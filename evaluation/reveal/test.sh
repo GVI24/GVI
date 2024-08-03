@@ -1,0 +1,1 @@
+python main.py --mode test --dataset_root /root/my_eval/RQ1/reveal_storage --dataset train_devign_test_reveal --test_src /root/my_eval/RQ1/reveal_storage/ggnn/train_devign_test_reveal/models-seed1000/reveal_test_after_ggnn.json --seed 1000 --balance False
