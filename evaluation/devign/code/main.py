@@ -229,7 +229,15 @@ if __name__ == '__main__':
         processed_test1_path = os.path.join(args.processed_test1_path, 'processed.bin')
         if os.path.exists(processed_test1_path):
             debug('Reading already processed test1 data from %s!' % processed_test1_path)
-            dataset = pickle.load(open(processed_test1_path, 'rb'))
+            dataset = DataSet(train_src=[],
+                              valid_src=[],
+                              test_src=[],
+                              test1_src=['/root/my_eval/RQ1/devign_storage/shard/test1/test.shard'],
+                              test2_src=[],
+                              batch_size=args.batch_size, n_ident=args.node_tag, g_ident=args.graph_tag,
+                              l_ident=args.label_tag)
+            test1_dataset = pickle.load(open(processed_test1_path, 'rb'))
+            dataset.test1_examples = test1_dataset.test_examples
             debug(len(dataset.train_examples), len(dataset.valid_examples), len(dataset.test_examples),
                   len(dataset.test1_examples), len(dataset.test2_examples))
         else:
