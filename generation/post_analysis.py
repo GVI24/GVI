@@ -19,32 +19,6 @@ similarity_output = config.similarity_output
 similarity_output_graph = config.similarity_output_graph
 gen_output_result_root = config.gen_output_result_root
 
-def combine_jsons():
-    with open(combine_json_1, 'r') as f:
-        json_1 = json.load(f)
-    with open(combine_json_2, 'r') as f:
-        json_2 = json.load(f)
-    index = 0
-    for item in json_1:
-        item['id'] = index
-<<<<<<< HEAD
-        item['file_name'] = '0125_' + item['file_name']
-        index += 1
-    for item in json_2:
-        item['id'] = index
-        item['file_name'] = '1106_' + item['file_name']
-=======
-        item['file_name'] = '' + item['file_name']
-        index += 1
-    for item in json_2:
-        item['id'] = index
-        item['file_name'] = '' + item['file_name']
->>>>>>> 44ca0eb (revision)
-        index += 1
-    combined = json_1 + json_2
-    with open(combine_json_output, 'w') as f:
-        json.dump(combined, f, indent=4)
-
 def metadata_func(json_obj: Dict, default_metadata: Dict) -> Dict:
     keys = ['id', 'file_name', 'file_path', 'code', 'label']
     for key in keys:
@@ -160,7 +134,6 @@ def get_similar():
         print(len(out))
 
 if __name__ == "__main__":
-    # combine_jsons()
     # check_output()
     # graph_hist()
     graph_box()

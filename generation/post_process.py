@@ -4,10 +4,7 @@ import os
 import re
 from sklearn.metrics import f1_score
 import config
-<<<<<<< HEAD
-=======
 import pdb
->>>>>>> 44ca0eb (revision)
 
 origin_data = config.origin_data
 gen_output_root = config.gen_output_root
@@ -73,79 +70,6 @@ def find_error_position(file_path, error_position):
             except UnicodeDecodeError:
                 print(f"Cannot decode with {encoding}")
 
-<<<<<<< HEAD
-# find_error_position('output_data/chain_reveal_4/294/1870_1.c', 3131)
-
-
-# def parse_output():
-#     dirs = os.listdir(gen_output_root)
-#     gen = []
-#     count = 0
-#     error = 0
-#     for i in range(0, len(dirs)):
-#         # if i != 0:
-#         #     continue
-#         dir = os.path.join(gen_output_root, str(i))
-#         files = os.listdir(dir)
-#         for file in files:
-#             if not file.endswith('.c'):  # Skip files that are not .c files
-#                 continue
-#             file_path = os.path.join(dir, file)
-#             with open(file_path, 'r') as f:
-#                 try:
-#                     context = f.read()
-#                 except UnicodeDecodeError as e:
-#                     print(f'{file_path}:\tUnicodeDecodeError, {e}')
-#                     continue
-#                 matches = extract(context, 'text')
-#                 if len(matches) == 5 or \
-#                         len(matches) == 6 or \
-#                         len(matches) == 7 or \
-#                         len(matches) == 8:
-#                     for num, match in enumerate(matches[-4:]):
-#                         file = str(i) + '_' + str(num) + '_1.c'
-#                         ex = {
-#                             'id': count,
-#                             'file_name': file,
-#                             'file_path': file_path,
-#                             'code': match,
-#                             'label': 1
-#                         }
-#                         count += 1
-#                         gen.append(ex)
-#                 elif len(matches) == 2 or len(matches) == 3:
-#                     match = matches[-1]
-#                     # if 'int main() {' in match or \
-#                     #         'int main(int argc, char *argv[]) {' in match or \
-#                     #         'int main(int argc, char **argv) {' in match :
-#                     #     print(f'{i}:\tmain')
-#                     #     continue
-#                     examples = extract(match, 'example')
-#                     if len(examples) == 2 or len(examples) == 4 or len(examples) == 5:
-#                         for num, example in enumerate(examples):
-#                             file = str(i) + '_' + str(num) + '_1.c'
-#                             ex = {
-#                                 'id': count,
-#                                 'file_name': file,
-#                                 'file_path': file_path,
-#                                 'code': example,
-#                                 'label': 1
-#                             }
-#                             count += 1
-#                             gen.append(ex)
-#                     else:
-#                         print(f'{i}:\t{len(examples)}\texamples')
-#                         # print(match)
-#                         error += 1
-#                 else:
-#                     print(f'{i}:\t{len(matches)}\tmatches')
-#                     error += 1
-#     with open(gen_combine_output, 'w') as f:
-#         json.dump(gen, f, indent=4)
-#         print(f'gen: {len(gen)}')
-#         print(f'error: {error}')
-=======
->>>>>>> 44ca0eb (revision)
 def parse_output():
     dirs = os.listdir(gen_output_root)
     gen = []
@@ -188,11 +112,6 @@ def parse_output():
                 # elif len(matches) == 2 or len(matches) == 3:
                 elif len(matches) == 1 or len(matches) == 2:
                     match = matches[-1]
-                    # if 'int main() {' in match or \
-                    #         'int main(int argc, char *argv[]) {' in match or \
-                    #         'int main(int argc, char **argv) {' in match :
-                    #     print(f'{i}:\tmain')
-                    #     continue
                     examples = extract(match, 'example')
                     if len(examples) == 2 or len(examples) == 4 or len(examples) == 5 or len(examples) == 8 \
                             or len(examples) == 9 or len(examples) == 10 or len(examples) == 18:
@@ -247,10 +166,9 @@ def remove_selected_structs(code):
     code = re.sub(r'typedef\s+enum\s*\{([^\}]*)\}\s*(\w+);', '', code, flags=re.DOTALL)
     return code
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 44ca0eb (revision)
+
+
 def rm_comments():
     with open(gen_combine_output, 'r') as f:
         data = json.load(f)
@@ -262,20 +180,12 @@ def rm_comments():
 
 
 def rm_():
-<<<<<<< HEAD
-    with open('/my_method/output_data_reveal_turbo/chain_reveal_4_2_result/mygen_bigvul.json', 'r') as f:
-=======
-    with open('./gvi_bigvul.json', 'r') as f:
->>>>>>> 44ca0eb (revision)
+    with open('', 'r') as f:
         data = json.load(f)
     for item in data:
         item['code'] = remove_comments(item['code'])
         item['code'] = remove_selected_structs(item['code'])
-<<<<<<< HEAD
-    with open('/my_method/output_data_reveal_turbo/chain_reveal_4_2_result/mygen_bigvul_after.json', 'w') as f:
-=======
-    with open('./gvi_bigvul_after.json', 'w') as f:
->>>>>>> 44ca0eb (revision)
+    with open('', 'w') as f:
         json.dump(data, f, indent=4)
 
 
@@ -286,11 +196,6 @@ def parse(root):
     count = 0
     error = 0
     for i in range(0, len(dirs)):
-<<<<<<< HEAD
-        # if i != 0:
-        #     continue
-=======
->>>>>>> 44ca0eb (revision)
         dir = os.path.join(root, str(i))
         files = os.listdir(dir)
         for file in files:
@@ -311,15 +216,6 @@ def parse(root):
                     continue
                 context = context[-500:]
                 # print(context)
-<<<<<<< HEAD
-                if "AI: Y" in context or "AI: y" in context:
-                    pred = 1
-                    preds.append(pred)
-                elif "AI: N" in context or "AI: n" in context:
-                    pred = 0
-                    preds.append(pred)
-                else:
-=======
                 if "AI: Y" in context or "AI: y" in context or "AI: \nY" in context or "AI: \ny" in context:
                     pred = 1
                     preds.append(pred)
@@ -329,7 +225,6 @@ def parse(root):
                 else:
                     # import pdb
                     # pdb.set_trace()
->>>>>>> 44ca0eb (revision)
                     print(f'{file_path}:\tAI not found')
     print(f'preds: {len(preds)}')
     print(f'targets: {len(targets)}')
@@ -343,16 +238,11 @@ def parse(root):
     #     print(f'error: {error}')
 
 def parse_all():
-<<<<<<< HEAD
-    dirs = glob.glob(gen_output_root + '*')
-    # dirs = glob.glob('/Users/mymac/PycharmProjects/pythonProject/my_method/1/gpt_reveal_cot' + '*')
-=======
     # dirs = glob.glob(gen_output_root + '*')
     # dirs = glob.glob(gen_output_root)
     # import pdb
     # pdb.set_trace()
-    dirs = glob.glob('./gpt_bigvul_20shot' + '*')
->>>>>>> 44ca0eb (revision)
+    dirs = glob.glob('' + '*')
     preds = []
     targets = []
     for dir in dirs:
@@ -365,76 +255,8 @@ def parse_all():
     print(f'targets: {targets}')
     print(f'f1_score: {f1_score(targets, preds)}')
 
-<<<<<<< HEAD
-def x():
-    dataset = 'bigvul'
-    root = '/Users/mymac/PycharmProjects/pythonProject/my_method/output_data_' + dataset
-    path = os.path.join(root, 'prediction*')
-    # Use glob to get all directories that match the pattern
-    directories = [f for f in glob.glob(path) if os.path.isdir(f)]
-    count = 0
-    gen = []
-    for dirs in directories:
-        for i in range(0, len(dirs)):
-            dir = os.path.join(dirs, str(i))
-            if not os.path.exists(dir):
-                continue
-            files = os.listdir(dir)
-            for file in files:
-                if not file.endswith('.c'):  # Skip files that are not .c files
-                    continue
-                file_path = os.path.join(dir, file)
-                with open(file_path, 'r') as f:
-                    try:
-                        context = f.read()
-                    except UnicodeDecodeError as e:
-                        print(f'{file_path}:\tUnicodeDecodeError, {e}')
-                        continue
-                    matches = extract(context, 'text')
-                    match = matches[0]
-                    ex = {
-                        'id': count,
-                        'file_name': file,
-                        'file_path': file_path,
-                        'code': match,
-                        'label': 1
-                    }
-                    count += 1
-                    gen.append(ex)
-    output = '/Users/mymac/PycharmProjects/pythonProject/my_method/1/' + dataset + '.json'
-    with open(output, 'w') as f:
-        json.dump(gen, f, indent=4)
-        print(f'gen: {len(gen)}')
 
 
-def select():
-    dataset = 'bigvul'
-    origin = '/Users/mymac/PycharmProjects/pythonProject/my_method/origin_data_' + dataset + '/' + dataset + '.json'
-    sample = '/Users/mymac/PycharmProjects/pythonProject/my_method/1/' + dataset + '.json'
-    output = '/Users/mymac/PycharmProjects/pythonProject/my_method/1/' + dataset + '_left.json'
-    with open(origin, 'r') as f:
-        origin = json.load(f)
-    with open(sample, 'r') as f:
-        sample = json.load(f)
-    sample_name = set(item['file_name'] for item in sample)
-    left = [item for item in origin if item['file_name'] not in sample_name]
-    with open(output, 'w') as f:
-        json.dump(left, f, indent=4)
-        print(f'left: {len(left)}')
-
-
-if __name__ == "__main__":
-    # if not os.path.exists(gen_output_result_root):
-    #     os.mkdir(gen_output_result_root)
-    # parse_output()
-    # rm_comments()
-
-    # x()
-    # select()
-
-    # parse()
-    parse_all()
-=======
 
 
 if __name__ == "__main__":
@@ -443,9 +265,9 @@ if __name__ == "__main__":
     parse_output()
     rm_comments()
 
+
     # parse()
     # parse_all()
->>>>>>> 44ca0eb (revision)
 
     # rm_()
 
