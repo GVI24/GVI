@@ -27,11 +27,19 @@ def combine_jsons():
     index = 0
     for item in json_1:
         item['id'] = index
+<<<<<<< HEAD
         item['file_name'] = '0125_' + item['file_name']
         index += 1
     for item in json_2:
         item['id'] = index
         item['file_name'] = '1106_' + item['file_name']
+=======
+        item['file_name'] = '' + item['file_name']
+        index += 1
+    for item in json_2:
+        item['id'] = index
+        item['file_name'] = '' + item['file_name']
+>>>>>>> 44ca0eb (revision)
         index += 1
     combined = json_1 + json_2
     with open(combine_json_output, 'w') as f:

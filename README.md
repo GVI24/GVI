@@ -42,7 +42,7 @@ Reproduce the evaluation results for vulnerability detectors:
 
 Reproduce the evaluation results for vulnerability line localization:
 1. download the storage data and model files with the same link above.
-2. run `bash evaluation/test_linevul_loc.sh` and `bash evaluation/test_ivdetect_loc.sh` to reproduce the evaluation results.
+2. run `bash evaluation/test_linevul_loc.sh` and `bash evaluation/test_ivdetect.sh` to reproduce the evaluation results.
 
 Evaluate your own data:
 1. we provide the preprocess and train scripts in each detector's folder, you can use the scripts to preprocess the data and train the detector.

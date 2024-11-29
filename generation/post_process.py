@@ -4,6 +4,10 @@ import os
 import re
 from sklearn.metrics import f1_score
 import config
+<<<<<<< HEAD
+=======
+import pdb
+>>>>>>> 44ca0eb (revision)
 
 origin_data = config.origin_data
 gen_output_root = config.gen_output_root
@@ -69,6 +73,7 @@ def find_error_position(file_path, error_position):
             except UnicodeDecodeError:
                 print(f"Cannot decode with {encoding}")
 
+<<<<<<< HEAD
 # find_error_position('output_data/chain_reveal_4/294/1870_1.c', 3131)
 
 
@@ -139,6 +144,8 @@ def find_error_position(file_path, error_position):
 #         json.dump(gen, f, indent=4)
 #         print(f'gen: {len(gen)}')
 #         print(f'error: {error}')
+=======
+>>>>>>> 44ca0eb (revision)
 def parse_output():
     dirs = os.listdir(gen_output_root)
     gen = []
@@ -240,6 +247,10 @@ def remove_selected_structs(code):
     code = re.sub(r'typedef\s+enum\s*\{([^\}]*)\}\s*(\w+);', '', code, flags=re.DOTALL)
     return code
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 44ca0eb (revision)
 def rm_comments():
     with open(gen_combine_output, 'r') as f:
         data = json.load(f)
@@ -251,12 +262,20 @@ def rm_comments():
 
 
 def rm_():
+<<<<<<< HEAD
     with open('/my_method/output_data_reveal_turbo/chain_reveal_4_2_result/mygen_bigvul.json', 'r') as f:
+=======
+    with open('./gvi_bigvul.json', 'r') as f:
+>>>>>>> 44ca0eb (revision)
         data = json.load(f)
     for item in data:
         item['code'] = remove_comments(item['code'])
         item['code'] = remove_selected_structs(item['code'])
+<<<<<<< HEAD
     with open('/my_method/output_data_reveal_turbo/chain_reveal_4_2_result/mygen_bigvul_after.json', 'w') as f:
+=======
+    with open('./gvi_bigvul_after.json', 'w') as f:
+>>>>>>> 44ca0eb (revision)
         json.dump(data, f, indent=4)
 
 
@@ -267,8 +286,11 @@ def parse(root):
     count = 0
     error = 0
     for i in range(0, len(dirs)):
+<<<<<<< HEAD
         # if i != 0:
         #     continue
+=======
+>>>>>>> 44ca0eb (revision)
         dir = os.path.join(root, str(i))
         files = os.listdir(dir)
         for file in files:
@@ -289,6 +311,7 @@ def parse(root):
                     continue
                 context = context[-500:]
                 # print(context)
+<<<<<<< HEAD
                 if "AI: Y" in context or "AI: y" in context:
                     pred = 1
                     preds.append(pred)
@@ -296,6 +319,17 @@ def parse(root):
                     pred = 0
                     preds.append(pred)
                 else:
+=======
+                if "AI: Y" in context or "AI: y" in context or "AI: \nY" in context or "AI: \ny" in context:
+                    pred = 1
+                    preds.append(pred)
+                elif "AI: N" in context or "AI: n" in context or "AI: \nN" in context or "AI: \nn" in context:
+                    pred = 0
+                    preds.append(pred)
+                else:
+                    # import pdb
+                    # pdb.set_trace()
+>>>>>>> 44ca0eb (revision)
                     print(f'{file_path}:\tAI not found')
     print(f'preds: {len(preds)}')
     print(f'targets: {len(targets)}')
@@ -309,8 +343,16 @@ def parse(root):
     #     print(f'error: {error}')
 
 def parse_all():
+<<<<<<< HEAD
     dirs = glob.glob(gen_output_root + '*')
     # dirs = glob.glob('/Users/mymac/PycharmProjects/pythonProject/my_method/1/gpt_reveal_cot' + '*')
+=======
+    # dirs = glob.glob(gen_output_root + '*')
+    # dirs = glob.glob(gen_output_root)
+    # import pdb
+    # pdb.set_trace()
+    dirs = glob.glob('./gpt_bigvul_20shot' + '*')
+>>>>>>> 44ca0eb (revision)
     preds = []
     targets = []
     for dir in dirs:
@@ -323,6 +365,7 @@ def parse_all():
     print(f'targets: {targets}')
     print(f'f1_score: {f1_score(targets, preds)}')
 
+<<<<<<< HEAD
 def x():
     dataset = 'bigvul'
     root = '/Users/mymac/PycharmProjects/pythonProject/my_method/output_data_' + dataset
@@ -391,6 +434,18 @@ if __name__ == "__main__":
 
     # parse()
     parse_all()
+=======
+
+
+if __name__ == "__main__":
+    if not os.path.exists(gen_output_result_root):
+        os.mkdir(gen_output_result_root)
+    parse_output()
+    rm_comments()
+
+    # parse()
+    # parse_all()
+>>>>>>> 44ca0eb (revision)
 
     # rm_()
 

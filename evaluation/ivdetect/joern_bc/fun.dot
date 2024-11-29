@@ -1,0 +1,41 @@
+digraph g {
+# AST
+{
+  edge[color=green3,constraint=true]
+  "id_(32)_code_(return a;)_type_(RETURN)_name_line_(6)" -> "id_(31)_code_(a)_type_(IDENTIFIER)_name_(a)_line_(6)" 
+   "id_(35)_code_(a + b)_type_(CALL)_name_(<operator>.addition)_line_(4)" -> "id_(34)_code_(a)_type_(IDENTIFIER)_name_(a)_line_(4)" 
+   "id_(35)_code_(a + b)_type_(CALL)_name_(<operator>.addition)_line_(4)" -> "id_(33)_code_(b)_type_(IDENTIFIER)_name_(b)_line_(4)" 
+   "id_(37)_code_(a = a + b)_type_(CALL)_name_(<operator>.assignment)_line_(4)" -> "id_(36)_code_(a)_type_(IDENTIFIER)_name_(a)_line_(4)" 
+   "id_(37)_code_(a = a + b)_type_(CALL)_name_(<operator>.assignment)_line_(4)" -> "id_(35)_code_(a + b)_type_(CALL)_name_(<operator>.addition)_line_(4)" 
+   "id_(38)_code_()_type_(BLOCK)_name_line_(3)" -> "id_(37)_code_(a = a + b)_type_(CALL)_name_(<operator>.assignment)_line_(4)" 
+   "id_(41)_code_(b > 0)_type_(CALL)_name_(<operator>.greaterThan)_line_(3)" -> "id_(40)_code_(b)_type_(IDENTIFIER)_name_(b)_line_(3)" 
+   "id_(41)_code_(b > 0)_type_(CALL)_name_(<operator>.greaterThan)_line_(3)" -> "id_(39)_code_(0)_type_(LITERAL)_name_line_(3)" 
+   "id_(42)_code_(if (b > 0))_type_(CONTROL_STRUCTURE)_name_line_(3)" -> "id_(41)_code_(b > 0)_type_(CALL)_name_(<operator>.greaterThan)_line_(3)" 
+   "id_(42)_code_(if (b > 0))_type_(CONTROL_STRUCTURE)_name_line_(3)" -> "id_(38)_code_()_type_(BLOCK)_name_line_(3)" 
+   "id_(45)_code_(a = 32767)_type_(CALL)_name_(<operator>.assignment)_line_(2)" -> "id_(44)_code_(a)_type_(IDENTIFIER)_name_(a)_line_(2)" 
+   "id_(45)_code_(a = 32767)_type_(CALL)_name_(<operator>.assignment)_line_(2)" -> "id_(43)_code_(32767)_type_(LITERAL)_name_line_(2)" 
+   "id_(47)_code_()_type_(BLOCK)_name_line_(1)" -> "id_(45)_code_(a = 32767)_type_(CALL)_name_(<operator>.assignment)_line_(2)" 
+   "id_(47)_code_()_type_(BLOCK)_name_line_(1)" -> "id_(42)_code_(if (b > 0))_type_(CONTROL_STRUCTURE)_name_line_(3)" 
+   "id_(47)_code_()_type_(BLOCK)_name_line_(1)" -> "id_(32)_code_(return a;)_type_(RETURN)_name_line_(6)" 
+   "id_(50)_code_type_(METHOD)_name_(add)_line_(1)" -> "id_(49)_code_(short b)_type_(METHOD_PARAMETER_IN)_name_(b)_line_(1)" 
+   "id_(50)_code_type_(METHOD)_name_(add)_line_(1)" -> "id_(48)_code_(RET)_type_(METHOD_RETURN)_name_line_(1)" 
+   "id_(50)_code_type_(METHOD)_name_(add)_line_(1)" -> "id_(47)_code_()_type_(BLOCK)_name_line_(1)" 
+   "id_(50)_code_type_(METHOD)_name_(add)_line_(1)" -> "id_(7)_code_(short b)_type_(METHOD_PARAMETER_OUT)_name_(b)_line_(1)" 
+ }
+# PDG
+{
+edge[color=red,constraint=false]
+  "id_(32)_code_(return a;)_type_(RETURN)_name_line_(6)" -> "id_(48)_code_(RET)_type_(METHOD_RETURN)_name_line_(1)" 
+   "id_(35)_code_(a + b)_type_(CALL)_name_(<operator>.addition)_line_(4)" -> "id_(37)_code_(a = a + b)_type_(CALL)_name_(<operator>.assignment)_line_(4)" 
+   "id_(37)_code_(a = a + b)_type_(CALL)_name_(<operator>.assignment)_line_(4)" -> "id_(32)_code_(return a;)_type_(RETURN)_name_line_(6)" 
+   "id_(41)_code_(b > 0)_type_(CALL)_name_(<operator>.greaterThan)_line_(3)" -> "id_(37)_code_(a = a + b)_type_(CALL)_name_(<operator>.assignment)_line_(4)" 
+   "id_(41)_code_(b > 0)_type_(CALL)_name_(<operator>.greaterThan)_line_(3)" -> "id_(36)_code_(a)_type_(IDENTIFIER)_name_(a)_line_(4)" 
+   "id_(41)_code_(b > 0)_type_(CALL)_name_(<operator>.greaterThan)_line_(3)" -> "id_(35)_code_(a + b)_type_(CALL)_name_(<operator>.addition)_line_(4)" 
+   "id_(41)_code_(b > 0)_type_(CALL)_name_(<operator>.greaterThan)_line_(3)" -> "id_(34)_code_(a)_type_(IDENTIFIER)_name_(a)_line_(4)" 
+   "id_(41)_code_(b > 0)_type_(CALL)_name_(<operator>.greaterThan)_line_(3)" -> "id_(33)_code_(b)_type_(IDENTIFIER)_name_(b)_line_(4)" 
+   "id_(45)_code_(a = 32767)_type_(CALL)_name_(<operator>.assignment)_line_(2)" -> "id_(35)_code_(a + b)_type_(CALL)_name_(<operator>.addition)_line_(4)" 
+   "id_(45)_code_(a = 32767)_type_(CALL)_name_(<operator>.assignment)_line_(2)" -> "id_(32)_code_(return a;)_type_(RETURN)_name_line_(6)" 
+   "id_(49)_code_(short b)_type_(METHOD_PARAMETER_IN)_name_(b)_line_(1)" -> "id_(41)_code_(b > 0)_type_(CALL)_name_(<operator>.greaterThan)_line_(3)" 
+   "id_(49)_code_(short b)_type_(METHOD_PARAMETER_IN)_name_(b)_line_(1)" -> "id_(35)_code_(a + b)_type_(CALL)_name_(<operator>.addition)_line_(4)" 
+ }
+}
