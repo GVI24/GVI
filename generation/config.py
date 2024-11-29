@@ -3,7 +3,7 @@ import os
 
 OPENAI_API_KEY = ""
 
-MODEL = "gpt-4o"
+MODEL = "gpt-4"
 
 origin_data = 'origin_data_reveal/reveal_train.json'              # 存放原始数据: reveal 18169
 # origin_data = 'origin_data_devign/devign.json'                    # 存放原始数据: devign 27318

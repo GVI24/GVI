@@ -24,24 +24,29 @@ GVI takes inspiration from human learning with imagination and proposes explorin
     |   |-devign/ 
     |   |-reveal/
     |   |-linevul/
-    |-results/ "tables of experimental results."
+    |   |-ivdetect/
+    |-results/ "tables of experimental results, including the average results of 5 runs."
 
 ### Usage ###
 Generate new vulnerable samples with GVI:
 1. download the real-world vulnerability datasets and change the path in `generation/config.py` to the path of the datasets.
-2. change the `GVI`, `CoT`, `5-shot`, `10-shot` prompt mode in `generation/config.py`.
+2. change the `GVI`, `CoT`, `5-shot`, `10-shot`, `20-shot` prompt mode in `generation/config.py`.
 3. run `python generation/chain_gen.py` to generate vulnerable samples.
 4. run `python generation/post_preprocess.py` to collect samples.
 5. `generation/static_check` contains the static check tools, you can use the tools to check the generated samples.
 
-Reproduce the evaluation results:
+Reproduce the evaluation results for vulnerability detectors:
 1. download the storage data and model files by following link: https://drive.google.com/drive/folders/1ixTJRpR23ocNbmugL1-vbV4VQEbeh-yN?usp=sharing and https://zenodo.org/records/13196375
 
 2. run `bash evaluation/test_devign.sh`,`bash evaluation/test_reveal.sh` and `bash evaluation/test_linevul.sh` to reproduce the evaluation results. (Please note the scripts is not complete, you need to change the path of the model and data in the script.)
 
+Reproduce the evaluation results for vulnerability line localization:
+1. download the storage data and model files with the same link above.
+2. run `bash evaluation/test_linevul_loc.sh` and `bash evaluation/test_ivdetect_loc.sh` to reproduce the evaluation results.
+
 Evaluate your own data:
 1. we provide the preprocess and train scripts in each detector's folder, you can use the scripts to preprocess the data and train the detector.
-2. if you want to retrain the models, please follow the settings in log files which are in the storage data. Especially, you need to change not only the scripts but also the `origin`, `oversample`, `reweight`, `sam` mode in each detector's `/code` folder. 
+2. if you want to retrain the models, please follow the settings in log files which are in the storage data. Especially, you need to change not only the scripts but also the `origin`, `oversample`, `reweight`, `sam` mode in each detector's `/code` folder.
 
 
 ### Dataset ###
